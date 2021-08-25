@@ -19,8 +19,15 @@ h2 {
   font-size: 4em;
 }
 
+@media screen and (max-width: 400px) {
+  h2 {
+      font-size: calc(64px + (64 - 32) * ((100vw - 400px) / (200)));
+  }
+}
+
 .logo {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .gradient-art {

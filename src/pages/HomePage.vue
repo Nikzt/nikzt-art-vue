@@ -48,10 +48,6 @@ export default {
 </script>
 
 <style >
-.logo {
-  text-align: center;
-}
-
 .splide {
   margin-left: auto;
   margin-right: auto;
