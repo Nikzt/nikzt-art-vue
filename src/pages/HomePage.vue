@@ -23,29 +23,24 @@
 import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
 import NikztLogo from "../components/NikztLogo.vue";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import {ref} from 'vue';
 
 export default {
   name: "HomePage",
   components: { NikztLogo, Splide, SplideSlide },
   setup() {
-    const windowWidth = ref(window.innerWidth);
-    const onWidthChange = () => (windowWidth.value = window.innerWidth);
-    onMounted(() => window.addEventListener("resize", onWidthChange));
-    onUnmounted(() => window.removeEventListener("resize", onWidthChange));
-    const options = computed(() => {
-      console.log(windowWidth.value)
-      return {
-        type: "loop",
-        height: "40vh",
-        fixedHeight: "35vh",
-        rewind: true,
-        perPage: windowWidth.value > 1200 ? 3 : 1,
-        perMove: 1,
-        focus: "center",
-        trimSpace: true,
-        gap: "5em",
-      };
+    const options = ref({
+      type: "loop",
+      perPage: window.innerWidth > 750 ? 3 : 1,
+      perMove: 1,
+      focus: window.innerWidth > 750 ? "center" : 0,
+      trimSpace: true,
+      gap: "2.5rem",
+      padding: {
+        left: 0
+      },
+      lazyLoad: true,
+      cover: true,
     });
     return { options };
   },
@@ -60,30 +55,37 @@ export default {
 .splide {
   margin-left: auto;
   margin-right: auto;
+  width: 90%;
   max-width: 1080px;
-}
-.sample-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-around;
+  height: 40vh;
+  min-height: 400px;
 }
 
 .splide__track {
-  width: 90%;
   margin: 0 auto 0 auto;
   border-radius: 20px;
+}
+
+.splide__arrow--next {
+  right: -3em;
+}
+
+.splide__arrow--prev {
+  left: -3em;
 }
 
 .splide__pagination {
   bottom: -2em;
 }
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 20px;
-  height: 100%;
+
+.splide__slide {
   max-width: 20rem;
-  object-fit: cover;
+  min-width: 14rem;
+  border-radius: 20px;
+  height: 40vh;
+  min-height: 400px;
+}
+img {
+  height: 100%;
 }
 </style>
