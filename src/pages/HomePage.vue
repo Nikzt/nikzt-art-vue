@@ -7,6 +7,9 @@
         <img src="../assets/gradient-portrait-1.png" />
       </splide-slide>
       <splide-slide>
+        <img src="../assets/gradient-portrait-2.png" />
+      </splide-slide>
+      <splide-slide>
         <img src="../assets/sample-artwork-1.jpg" />
       </splide-slide>
       <splide-slide>
