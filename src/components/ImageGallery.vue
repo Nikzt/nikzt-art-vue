@@ -113,6 +113,30 @@ export default {
   left: -3em;
 }
 
+.theme-aurora .splide__arrow svg {
+  fill: rgb(118, 255, 246);
+}
+
+.theme-aurora .splide__arrow svg:hover {
+  fill: rgb(175, 255, 250);
+}
+
+.theme-cool-purple .splide__arrow svg {
+  fill: rgb(186, 144, 245);
+}
+
+.theme-cool-purple .splide__arrow svg:hover {
+  fill: rgb(217, 194, 255);
+}
+
+.theme-hot .splide__arrow svg {
+  fill: rgb(235, 77, 132);
+}
+
+.theme-hot .splide__arrow svg:hover {
+  fill: rgb(238, 142, 164);
+}
+
 .splide__pagination {
   bottom: -2em;
 }

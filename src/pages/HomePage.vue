@@ -59,7 +59,7 @@ export default {
     transition: background-color 0.3s linear;
   }
   .theme-aurora {
-    background-color: rgb(3, 9, 56);
+    background-color: #161329;
     transition: background-color 0.3s linear;
   }
 
