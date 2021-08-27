@@ -1,33 +1,66 @@
 <template>
-  <div>
+  <div id="home-page" :class="selectedTheme">
     <NikztLogo class="noselect" />
 
-    <ImageGallery :imageUrls="imageUrls"/>
+    <ImageGallery :images="images" :onChangeTheme="onChangeTheme"/>
   </div>
 </template>
 
 <script>
 import NikztLogo from "../components/NikztLogo.vue";
 import ImageGallery from "../components/ImageGallery.vue";
+import {ref} from "vue";
 
 export default {
   name: "HomePage",
   components: { NikztLogo, ImageGallery },
   setup() {
-
-    const imageUrls = [
-      require("../images/gradient-portrait-1.jpg"),
-      require("../images/gradient-portrait-2.jpg"),
-      require("../images/sample-artwork-1.jpg"),
-      require("../images/sample-artwork-2.jpg"),
-      require("../images/sample-artwork-3.jpg"),
-      require("../images/gradient-portrait-3.jpg"),
+    const selectedTheme = ref("theme-hot");
+    const images = [
+      {
+        url: require("../images/gradient-portrait-hot.jpg"),
+        themeClass: "theme-hot"
+      },
+      {
+        url: require("../images/gradient-portrait-cool-purple.jpg"),
+        themeClass: "theme-cool-purple"
+      },
+      {
+        url: require("../images/gradient-portrait-aurora.jpg"),
+        themeClass: "theme-aurora"
+      }
     ]
 
-    return { imageUrls };
+    const onChangeTheme = (themeString) => {
+      selectedTheme.value = themeString;
+      document.documentElement.className = themeString;
+    }
+
+    return { images, selectedTheme, onChangeTheme };
   },
 };
 </script>
 
 <style >
+  .logo {
+    padding-top: 30px;
+  }
+  #home-page {
+    width: 100%;
+    height: 100%;
+  }
+
+  .theme-hot {
+    background-color: rgb(34, 7, 19);
+    transition: background-color 0.3s linear;
+  }
+  .theme-cool-purple {
+    background-color: rgb(34, 3, 48);
+    transition: background-color 0.3s linear;
+  }
+  .theme-aurora {
+    background-color: rgb(3, 9, 56);
+    transition: background-color 0.3s linear;
+  }
+
 </style>

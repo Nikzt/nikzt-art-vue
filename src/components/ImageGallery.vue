@@ -1,10 +1,16 @@
 <template>
-  <splide :options="options" @splide:click="onSlideClick">
-    <splide-slide v-for="url in imageUrls" v-bind:key="url">
-      <img :src="`${url}`" />
+  <splide :options="options" @splide:click="onSlideClick" @splide:active="onSlideActive">
+    <splide-slide v-for="image in images" v-bind:key="image.url">
+      <div class="box-shadow-area"></div>
+      <div class="box-shadow-area-2"></div>
+      <img :src="`${image.url}`" />
     </splide-slide>
   </splide>
-  <image-preview :showPreview="showPreview" :imageUrl="selectedImageUrl" @click="onPreviewClick" />
+  <image-preview
+    :showPreview="showPreview"
+    :imageUrl="selectedImageUrl"
+    @click="onPreviewClick"
+  />
 </template>
 
 <script>
@@ -17,7 +23,8 @@ export default {
   name: "ImageGallery",
   components: { Splide, SplideSlide, ImagePreview },
   props: {
-    imageUrls: Array,
+    images: Array,
+    onChangeTheme: Function
   },
   setup(props) {
     const options = {
@@ -28,10 +35,15 @@ export default {
       trimSpace: true,
       gap: "2.5rem",
       lazyLoad: true,
+      updateOnMove: true,
+      pagination: false,
       cover: true,
       slideFocus: true,
       padding: {
-        left: 0,
+        left: 20,
+        right: 20,
+        top: 20,
+        bottom: 20
       },
       breakpoints: {
         750: {
@@ -49,24 +61,29 @@ export default {
     const selectedImageUrl = ref("");
 
     const onSlideClick = (splide, slide) => {
-      showPreview.value = true;
+      splide.go(slide.index);
+    };
+
+    const onSlideActive = (splide, slide) => {
       const idx =
-        slide.index >= 0 && slide.index < props.imageUrls.length
+        slide.index >= 0 && slide.index < props.images.length
           ? slide.index
           : slide.realIndex;
-      selectedImageUrl.value = props.imageUrls[idx];
-    };
+      const themeClass = props.images[idx].themeClass;
+      props.onChangeTheme(themeClass);
+    }
 
     const onPreviewClick = () => {
       showPreview.value = false;
-    }
+    };
 
     return {
       options,
       showPreview,
       selectedImageUrl,
       onSlideClick,
-      onPreviewClick
+      onPreviewClick,
+      onSlideActive
     };
   },
 };
@@ -76,7 +93,7 @@ export default {
 .splide {
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 75vw;
   max-width: 860px;
   height: 40vh;
   min-height: 400px;
@@ -85,6 +102,7 @@ export default {
 .splide__track {
   margin: 0 auto 0 auto;
   border-radius: 20px;
+  padding: 20px 0 20px 0;
 }
 
 .splide__arrow--next {
@@ -101,17 +119,43 @@ export default {
 
 .splide__slide {
   max-width: 30rem;
-  min-width: 14rem;
   border-radius: 20px;
   height: 40vh;
   min-height: 400px;
   cursor: pointer;
-  transition: opacity 0.08s linear;
+}
+
+.splide__slide.is-active .box-shadow-area, .box-shadow-area-2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  position: absolute;
+  transition: box-shadow 0.2s linear;
+}
+
+
+.theme-hot .splide__slide.is-active .box-shadow-area {
+  box-shadow: 0px 0px 20px rgb(245, 24, 90);
+}
+.theme-hot .splide__slide.is-active .box-shadow-area-2 {
+  box-shadow: 0px 0px 10px rgb(255, 120, 96);
+}
+
+.theme-aurora .splide__slide.is-active .box-shadow-area {
+  box-shadow: 0px 0px 20px rgb(41, 228, 241);
+}
+.theme-aurora .splide__slide.is-active .box-shadow-area-2 {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.808);
+}
+
+.theme-cool-purple .splide__slide.is-active .box-shadow-area {
+  box-shadow: 0px 0px 20px rgb(44, 25, 214);
+}
+.theme-cool-purple .splide__slide.is-active .box-shadow-area-2 {
+  box-shadow: 0px 0px 10px rgba(230, 128, 255, 0.836);
 }
 
 .splide__slide:hover {
-  opacity: 0.8;
-  transition: opacity 0.08s linear;
 }
 img {
   height: 100%;
