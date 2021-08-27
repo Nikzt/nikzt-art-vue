@@ -147,6 +147,12 @@ export default {
   height: 40vh;
   min-height: 400px;
   cursor: pointer;
+  filter: grayscale(100%);
+  transition: filter 0.2s ease-in-out;
+}
+
+.splide__slide.is-active {
+  filter: none;
 }
 
 .splide__slide.is-active .box-shadow-area, .box-shadow-area-2 {
@@ -154,7 +160,7 @@ export default {
   height: 100%;
   border-radius: 20px;
   position: absolute;
-  transition: box-shadow 0.2s linear;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 
