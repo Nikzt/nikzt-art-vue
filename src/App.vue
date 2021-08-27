@@ -18,14 +18,8 @@ export default {
 
 html {
   background-color: rgb(21, 1, 24);
-  width: 100%;
-  height: 100%;
 }
 
-body {
-  width: 100%;
-  height: 100%;
-}
 #app {
   font-family: Spartan,Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
