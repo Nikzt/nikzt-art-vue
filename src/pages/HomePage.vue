@@ -16,11 +16,12 @@ export default {
   setup() {
 
     const imageUrls = [
-      require("../images/gradient-portrait-1.png"),
-      require("../images/gradient-portrait-2.png"),
+      require("../images/gradient-portrait-1.jpg"),
+      require("../images/gradient-portrait-2.jpg"),
       require("../images/sample-artwork-1.jpg"),
       require("../images/sample-artwork-2.jpg"),
       require("../images/sample-artwork-3.jpg"),
+      require("../images/gradient-portrait-3.jpg"),
     ]
 
     return { imageUrls };

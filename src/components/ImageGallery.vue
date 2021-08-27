@@ -38,7 +38,7 @@ export default {
           perPage: 2,
           focus: 0,
         },
-        400: {
+        500: {
           perPage: 1,
           focus: 0,
         },
@@ -100,7 +100,7 @@ export default {
 }
 
 .splide__slide {
-  max-width: 20rem;
+  max-width: 30rem;
   min-width: 14rem;
   border-radius: 20px;
   height: 40vh;
