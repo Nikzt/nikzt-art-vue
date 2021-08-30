@@ -16,6 +16,10 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@200;400&display=swap');
 
+:root {
+  --color-primary:  red;
+}
+
 html {
   background-color: rgb(21, 1, 24);
 }

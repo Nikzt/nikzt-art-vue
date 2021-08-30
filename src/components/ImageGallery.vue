@@ -1,5 +1,9 @@
 <template>
-  <splide :options="options" @splide:click="onSlideClick" @splide:active="onSlideActive">
+  <splide
+    :options="options"
+    @splide:click="onSlideClick"
+    @splide:active="onSlideActive"
+  >
     <splide-slide v-for="image in images" v-bind:key="image.url">
       <div class="box-shadow-area"></div>
       <div class="box-shadow-area-2"></div>
@@ -24,11 +28,11 @@ export default {
   components: { Splide, SplideSlide, ImagePreview },
   props: {
     images: Array,
-    onChangeTheme: Function
+    onChangeTheme: Function,
   },
   setup(props) {
     const options = {
-      type: "loop",
+      type: "slide",
       perPage: 3,
       perMove: 1,
       focus: "center",
@@ -43,7 +47,7 @@ export default {
         left: 20,
         right: 20,
         top: 20,
-        bottom: 20
+        bottom: 20,
       },
       breakpoints: {
         750: {
@@ -71,7 +75,7 @@ export default {
           : slide.realIndex;
       const themeClass = props.images[idx].themeClass;
       props.onChangeTheme(themeClass);
-    }
+    };
 
     const onPreviewClick = () => {
       showPreview.value = false;
@@ -83,7 +87,7 @@ export default {
       selectedImageUrl,
       onSlideClick,
       onPreviewClick,
-      onSlideActive
+      onSlideActive,
     };
   },
 };
@@ -148,21 +152,21 @@ export default {
   min-height: 400px;
   cursor: pointer;
   filter: grayscale(100%);
-  transition: filter 0.2s ease-in-out;
+  transition: filter 0.3s ease-in-out;
 }
 
 .splide__slide.is-active {
   filter: none;
 }
 
-.splide__slide.is-active .box-shadow-area, .box-shadow-area-2 {
+.splide__slide.is-active .box-shadow-area,
+.box-shadow-area-2 {
   width: 100%;
   height: 100%;
   border-radius: 20px;
   position: absolute;
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
 }
-
 
 .theme-hot .splide__slide.is-active .box-shadow-area {
   box-shadow: 0px 0px 20px rgb(245, 24, 90);
@@ -185,8 +189,17 @@ export default {
   box-shadow: 0px 0px 10px rgba(230, 128, 255, 0.836);
 }
 
-.splide__slide:hover {
+.splide__arrow {
+  visibility: hidden;
 }
+
+@media screen and (max-width: 750px) {
+    .splide__arrow {
+      visibility: visible;
+    }
+}
+
+
 img {
   height: 100%;
 }
