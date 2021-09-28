@@ -25,6 +25,7 @@ h2 {
   font-size: 4em;
 }
 
+/* Fluid typography: scale size of text with screen width below this threshold */
 @media screen and (max-width: 400px) {
   h2 {
     font-size: calc(64px + (64 - 32) * ((100vw - 400px) / (200)));
@@ -51,50 +52,37 @@ h2 {
   font-weight: 400;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.hot.gradient-art {
   background-image: linear-gradient(
     140deg,
-    rgb(230, 62, 44) 0%,
-    rgb(209, 6, 141) 100%
+    var(--color-gradient-start) 0%,
+    var(--color-gradient-end) 100%
   );
-  opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* The parent theme class determines which gradient 'art' text to show */
+
+.hot.gradient-art {
+  opacity: 0;
 }
 
 .theme-hot .hot.gradient-art {
-  transition: opacity 0.3s ease-in-out;
   opacity: 1;
 }
 
 .purple.gradient-art {
-  background-image: linear-gradient(
-    140deg,
-    rgb(222, 89, 240) 0%,
-    rgb(25, 72, 228) 100%
-  );
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .theme-cool-purple .purple.gradient-art {
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .aurora.gradient-art {
-  background-image: linear-gradient(
-    140deg,
-    rgb(38, 228, 241) 0%,
-    rgb(0, 163, 95) 100%
-  );
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .theme-aurora .aurora.gradient-art {
-  transition: opacity 0.3s ease-in-out;
   opacity: 1;
 }
 

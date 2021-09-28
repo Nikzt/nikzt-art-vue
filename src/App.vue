@@ -17,11 +17,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@200;400&display=swap');
 
 :root {
-  --color-primary:  red;
+  --color-background:  rgb(34, 7, 19);
+  --color-gradient-start: rgb(230, 62, 44);
+  --color-gradient-end: rgb(209, 6, 141);
+  --color-primary: rgb(235, 77, 132);
+  --color-primary-light: rgb(238, 142, 164);
 }
 
 html {
-  background-color: rgb(21, 1, 24);
+  /* background-color: rgb(21, 1, 24); */
+  background-color: var(--color-background);
+  transition: background-color 0.3s linear;
 }
 
 #app {

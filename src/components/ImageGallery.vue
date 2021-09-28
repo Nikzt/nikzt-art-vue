@@ -10,22 +10,16 @@
       <img :src="`${image.url}`" />
     </splide-slide>
   </splide>
-  <image-preview
-    :showPreview="showPreview"
-    :imageUrl="selectedImageUrl"
-    @click="onPreviewClick"
-  />
 </template>
 
 <script>
 import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import ImagePreview from "./ImagePreview.vue";
 import { ref } from "vue";
 
 export default {
   name: "ImageGallery",
-  components: { Splide, SplideSlide, ImagePreview },
+  components: { Splide, SplideSlide },
   props: {
     images: Array,
     onChangeTheme: Function,
@@ -61,7 +55,6 @@ export default {
       },
     };
 
-    const showPreview = ref(false);
     const selectedImageUrl = ref("");
 
     const onSlideClick = (splide, slide) => {
@@ -77,16 +70,10 @@ export default {
       props.onChangeTheme(themeClass);
     };
 
-    const onPreviewClick = () => {
-      showPreview.value = false;
-    };
-
     return {
       options,
-      showPreview,
       selectedImageUrl,
       onSlideClick,
-      onPreviewClick,
       onSlideActive,
     };
   },
@@ -117,28 +104,12 @@ export default {
   left: -3em;
 }
 
-.theme-aurora .splide__arrow svg {
-  fill: rgb(118, 255, 246);
+.splide__arrow svg {
+  fill: var(--color-primary);
 }
 
-.theme-aurora .splide__arrow svg:hover {
-  fill: rgb(175, 255, 250);
-}
-
-.theme-cool-purple .splide__arrow svg {
-  fill: rgb(186, 144, 245);
-}
-
-.theme-cool-purple .splide__arrow svg:hover {
-  fill: rgb(217, 194, 255);
-}
-
-.theme-hot .splide__arrow svg {
-  fill: rgb(235, 77, 132);
-}
-
-.theme-hot .splide__arrow svg:hover {
-  fill: rgb(238, 142, 164);
+.splide__arrow svg:hover {
+  fill: var(--color-primary-light);
 }
 
 .splide__pagination {
@@ -168,25 +139,11 @@ export default {
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.theme-hot .splide__slide.is-active .box-shadow-area {
-  box-shadow: 0px 0px 20px rgb(245, 24, 90);
+.splide__slide.is-active .box-shadow-area {
+  box-shadow: 0px 0px 20px var(--color-primary);
 }
-.theme-hot .splide__slide.is-active .box-shadow-area-2 {
-  box-shadow: 0px 0px 10px rgb(255, 120, 96);
-}
-
-.theme-aurora .splide__slide.is-active .box-shadow-area {
-  box-shadow: 0px 0px 20px rgb(41, 228, 241);
-}
-.theme-aurora .splide__slide.is-active .box-shadow-area-2 {
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.808);
-}
-
-.theme-cool-purple .splide__slide.is-active .box-shadow-area {
-  box-shadow: 0px 0px 20px rgb(44, 25, 214);
-}
-.theme-cool-purple .splide__slide.is-active .box-shadow-area-2 {
-  box-shadow: 0px 0px 10px rgba(230, 128, 255, 0.836);
+.splide__slide.is-active .box-shadow-area-2 {
+  box-shadow: 0px 0px 10px var(--color-primary-light);
 }
 
 .splide__arrow {
@@ -198,7 +155,6 @@ export default {
       visibility: visible;
     }
 }
-
 
 img {
   height: 100%;
